@@ -5,3 +5,10 @@ export {
   loggerMiddleware,
   modelToJSONFilter,
 } from './libs';
+
+export {
+  Validations,
+  bodyFilterMiddleware,
+  errorMiddleware,
+  notFoundMiddleware,
+} from './middlewares';
