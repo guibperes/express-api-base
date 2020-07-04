@@ -16,6 +16,9 @@
   "files": [
     "dist/**/*"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build": "rimraf dist && tsc",
     "install-peers": "npm-install-peers",
