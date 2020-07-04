@@ -8,9 +8,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
-    env:
-      NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -30,3 +27,5 @@ jobs:
 
       - name: NPM Publish
         run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
