@@ -1,15 +1,15 @@
 {
-  "name": "@beidaki-code/express-api-base",
+  "name": "@simple-ti/express-api-base",
   "version": "1.1.0",
   "description": "Módulo contendo todas as libs e middlewares para criação de API's REST",
   "author": "Guilherme Beidaki Peres",
-  "homepage": "https://github.com/beidaki-code/express-api-base#readme",
+  "homepage": "https://github.com/simple-ti/express-api-base#readme",
   "repository": {
     "type": "git",
-    "url": "git://github.com/beidaki-code/express-api-base.git"
+    "url": "git://github.com/simple-ti/express-api-base.git"
   },
   "bugs": {
-    "url": "https://github.com/beidaki-code/express-api-base/issues"
+    "url": "https://github.com/simple-ti/express-api-base/issues"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "express": "4.x.x",
-    "mongoose": "^5.x.x",
+    "mongoose": "5.x.x",
     "yup": "0.29.x"
   },
   "devDependencies": {

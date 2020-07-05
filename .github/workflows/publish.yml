@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-          scope: '@beidaki-code'
+          scope: '@simple-ti'
 
       - name: NPM Install
         run: npm ci
