@@ -6,7 +6,7 @@
   "homepage": "https://github.com/beidaki-code/api-base#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beidaki-code/api-base.git"
+    "url": "git://github.com/beidaki-code/api-base.git"
   },
   "bugs": {
     "url": "https://github.com/beidaki-code/api-base/issues"
