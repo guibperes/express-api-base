@@ -2,7 +2,7 @@
 Módulo contendo todas as libs e middlewares para criação de API's REST utilizando Express, Mongoose, Yup e Pino Logger
 
 ## Documentação
-- HttpStatus: Módulo contendo nome e código dos status HTTP.
+- **HttpStatus:** Módulo contendo nome e código dos status HTTP.
 ```js
 import { HttpStatus } from '@simple-ti/express-api-base';
 
@@ -15,7 +15,7 @@ const status = HttpStatus.OK;
 */
 ```
 
-- Response: Módulo para facilitar a criação e retorno de respostas e erros no formato JSON.
+- **Response:** Módulo para facilitar a criação e retorno de respostas e erros no formato JSON.
 ```js
 import { Response, HttpStatus } from '@simple-ti/express-api-base';
 
@@ -56,7 +56,7 @@ Response definido no controller do express e o segundo parâmetro é o objeto de
 Response.send(res, error);
 ```
 
-- logger: Função que define a instância do logger, utilizando a biblioteca pino
+- **logger:** Função que define a instância do logger, utilizando a biblioteca pino
 ```js
 import { logger } from '@simple-ti/express-api-base';
 
@@ -64,7 +64,7 @@ import { logger } from '@simple-ti/express-api-base';
 logger.info('Logando uma informação');
 ```
 
-- loggerMiddleware: Função que retorna o middleware do logger para ser utilizado com o express.
+- **loggerMiddleware:** Função que retorna o middleware do logger para ser utilizado com o express.
 ```js
 import express from 'express';
 import { loggerMiddleware } from '@simple-ti/express-api-base';
@@ -73,7 +73,7 @@ const app = express();
 app.use(loggerMiddleware);
 ```
 
-- modelToJSONFilter: Função para filtrar atributos que não devem estar presente no JSON dos models do mongoose, por padrão filtra os atributos '_id', '__v', 'createdAt', 'updatedAt', podendo ser passado N atributos como parâmetro.
+- **modelToJSONFilter:** Função para filtrar atributos que não devem estar presente no JSON dos models do mongoose, por padrão filtra os atributos '_id', '__v', 'createdAt', 'updatedAt', podendo ser passado N atributos como parâmetro.
 ```js
 import { Schema } from 'mongoose';
 import { modelToJSONFilter } from '@simple-ti/express-api-base';
