@@ -29,7 +29,10 @@ const response = Response.build({ ok: true });
 }
 */
 
-// Cria um objeto de resposta de erro, onde se não informado nenhum parâmetro o status padrão é Internal Server Error.
+/*
+Cria um objeto de resposta de erro, onde se não informado nenhum parâmetro o status
+padrão é Internal Server Error.
+*/
 const error = Response.buildError('Deu erro', HttpStatus.BAD_REQUEST);
 /*
 {
