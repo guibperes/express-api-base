@@ -1,8 +1,21 @@
 # Express API Base
-Módulo contendo todas as libs e middlewares para criação de API's REST utilizando Express, Mongoose, Yup e Pino Logger
+Módulo contendo todas as libs e middlewares para criação de API's REST utilizando Express, Mongoose, Yup e Pino Logger.
 
-## Documentação
-- **HttpStatus:** Módulo contendo nome e código dos status HTTP.
+- [Módulo Libs](#módulo-libs)
+  - [HttpStatus](#httpStatus)
+  - [Response](#response)
+  - [logger](#logger)
+  - [loggerMiddleware](#loggerMiddleware)
+  - [modelToJSONFilter](#modelToJSONFilter)
+- [Módulo Middlewares](#módulo-middlewares)
+  - [Validations](#validations)
+  - [bodyFilterMiddleware](#bodyFilterMiddleware)
+  - [errorMiddleware](#errorMiddleware)
+  - [notFoundMiddleware](#notFoundMiddleware)
+
+## Módulo Libs
+### HttpStatus
+Módulo contendo nome e código dos status HTTP.
 ```js
 import { HttpStatus } from '@simple-ti/express-api-base';
 
@@ -15,7 +28,8 @@ const status = HttpStatus.OK;
 */
 ```
 
-- **Response:** Módulo para facilitar a criação e retorno de respostas e erros no formato JSON.
+### Response
+Módulo para facilitar a criação e retorno de respostas e erros no formato JSON.
 ```js
 import { Response, HttpStatus } from '@simple-ti/express-api-base';
 
@@ -56,7 +70,8 @@ Response definido no controller do express e o segundo parâmetro é o objeto de
 Response.send(res, error);
 ```
 
-- **logger:** Função que define a instância do logger, utilizando a biblioteca pino
+### logger
+Função que define a instância do logger, utilizando a biblioteca pino
 ```js
 import { logger } from '@simple-ti/express-api-base';
 
@@ -64,7 +79,8 @@ import { logger } from '@simple-ti/express-api-base';
 logger.info('Logando uma informação');
 ```
 
-- **loggerMiddleware:** Função que retorna o middleware do logger para ser utilizado com o express.
+### loggerMiddleware
+Função que retorna o middleware do logger para ser utilizado com o express.
 ```js
 import express from 'express';
 import { loggerMiddleware } from '@simple-ti/express-api-base';
@@ -73,7 +89,8 @@ const app = express();
 app.use(loggerMiddleware);
 ```
 
-- **modelToJSONFilter:** Função para filtrar atributos que não devem estar presente no JSON dos models do mongoose, por padrão filtra os atributos '_id', '__v', 'createdAt', 'updatedAt', podendo ser passado N atributos como parâmetro.
+### modelToJSONFilter
+Função para filtrar atributos que não devem estar presente no JSON dos models do mongoose, por padrão filtra os atributos '_id', '__v', 'createdAt', 'updatedAt', podendo ser passado N atributos como parâmetro.
 ```js
 import { Schema } from 'mongoose';
 import { modelToJSONFilter } from '@simple-ti/express-api-base';
@@ -91,4 +108,69 @@ const schema = new Schema(
     }
   }
 );
+```
+
+## Módulo Middlewares
+### Validations
+Módulo para validar os parâmetros e atributos nos controllers. Utilizando a biblioteca Yup e a função de validação de ObjectId do Mongoose.
+```js
+import { Router } from 'express';
+import { Validations } from '@simple-ti/express-api-base';
+
+const routes = Router();
+
+routes.get(
+  '/:id',
+  // Middleware para verificar se o ObjectId é válido.
+  Validations.validateObjectId,
+  // Restante dos middlewares
+);
+
+routes.post(
+  '/',
+  /*
+  Função que retorna um middleware para validar o body da requisição,
+  sendo passado como parâmetro um objeto de validação do Yup.
+  */
+  Validations.validateBody(yupObjectSchema)
+  // Restante dos middlewares
+);
+```
+
+### bodyFilterMiddleware
+Middleware para filtrar atributos que são enviados no corpo da requisição, por padrão remove os atributos '_id', '__v', 'createdAt', 'updatedAt', e recebe N parâmetros.
+```js
+import { Router } from 'express';
+import { bodyFilterMiddleware } from '@simple-ti/express-api-base';
+
+const routes = Router();
+
+routes.post(
+  '/',
+  // Remove todos os atributos especificados e continua a requisição.
+  bodyFilterMiddleware('password', 'arg2', 'argN')
+  // Restante dos middlewares
+);
+```
+
+### errorMiddleware
+Define o middleware padrão para o express utilizar caso um erro não tenha um tratamento específico.
+```js
+import express from 'express';
+import { errorMiddleware } from '@simple-ti/express-api-base';
+
+const app = express();
+app.use(errorMiddleware);
+```
+
+### notFoundMiddleware
+Define o middleware para quando não for encontrado nenhuma rota correspondente definida na aplicação.
+```js
+import express from 'express';
+import { notFoundMiddleware } from '@simple-ti/express-api-base';
+
+const app = express();
+
+// Deve ser definido depois das rotas.
+app.use('*', notFoundMiddleware);
 ```
