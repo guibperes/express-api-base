@@ -47,7 +47,12 @@ const error = Response.buildError('Deu erro', HttpStatus.BAD_REQUEST);
 }
 */
 
-// Verifica se é uma resposta de sucesso ou erro e envia, caso seja uma resposta de sucesso e status de retorno será 200, caso seja uma resposta de erro o status enviado é o que foi definido no objeto de erro. O primeiro parâmetro é o objeto Response definido no controller do express e o segundo parâmetro é o objeto de resposta.
+/*
+Verifica se é uma resposta de sucesso ou erro e envia, caso seja uma resposta
+de sucesso o status de retorno será 200, caso seja uma resposta de erro o status
+enviado é o que foi definido no objeto de erro. O primeiro parâmetro é o objeto
+Response definido no controller do express e o segundo parâmetro é o objeto de resposta.
+*/
 Response.send(res, error);
 ```
 
