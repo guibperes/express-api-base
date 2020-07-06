@@ -2,7 +2,7 @@ name: Github Packages Publish
 
 on:
   push:
-    branches: [master]
+    tags: ['*']
 
 jobs:
   publish:
