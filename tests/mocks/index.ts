@@ -1,0 +1,1 @@
+export { DocumentMock } from './document';

@@ -1,0 +1,13 @@
+{
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.ts$": "ts-jest"
+  },
+  "testMatch": ["**/tests/**/*.test.ts"],
+  "clearMocks": true,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/**/index.ts"
+  ]
+}
