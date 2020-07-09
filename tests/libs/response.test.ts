@@ -1,7 +1,7 @@
-import httpMocks from 'node-mocks-http';
-
 import { HttpStatus } from '../../src/libs/httpStatus';
 import { Response } from '../../src/libs/response';
+
+import { HTTPMock } from '../mocks';
 
 describe('Lib Response', () => {
   test('should return a success response', () => {
@@ -36,7 +36,7 @@ describe('Lib Response', () => {
   });
 
   test('should send a success response', () => {
-    const res = httpMocks.createResponse();
+    const res = HTTPMock.createResponse();
     const result = Response.send(res, Response.build({ name: 'Guilherme' }));
 
     expect(result).toBeDefined();
@@ -44,7 +44,7 @@ describe('Lib Response', () => {
   });
 
   test('should send a error response', () => {
-    const res = httpMocks.createResponse();
+    const res = HTTPMock.createResponse();
     const result = Response.send(
       res,
       Response.buildError('Error message', HttpStatus.BAD_REQUEST)
