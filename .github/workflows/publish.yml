@@ -20,7 +20,7 @@ jobs:
           scope: '@simple-ti'
 
       - name: NPM Install
-        run: npm ci
+        run: npm run full-install
 
       - name: NPM ESLint
         run: npm run eslint

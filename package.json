@@ -23,7 +23,8 @@
     "build": "rimraf dist && tsc",
     "install-peers": "npm-install-peers",
     "test": "rimraf coverage && jest --coverage",
-    "eslint": "eslint \"**/*.ts\""
+    "eslint": "eslint \"**/*.ts\"",
+    "full-install": "npm install && npm run install-peers"
   },
   "dependencies": {
     "express-pino-logger": "^5.0.0",
