@@ -5,7 +5,7 @@ describe('Lib HttpStatus', () => {
     const status = HttpStatus.CREATED;
 
     expect(status.name).toBe('Created');
-    expect(status.number).toBe(201)
+    expect(status.number).toBe(201);
   });
 
   test('should be OK status name and code', () => {
