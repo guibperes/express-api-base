@@ -1,0 +1,31 @@
+name: Pull Request Check ESLint and Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  eslint_and_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@simple-ti'
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: NPM ESLint
+        run: npm run eslint
+
+      - name: NPM Test
+        run: npm test
