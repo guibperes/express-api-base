@@ -11,4 +11,4 @@ export {
   bodyFilterMiddleware,
   errorMiddleware,
   notFoundMiddleware,
-} from './middlewares';
+} from './middlewares'
