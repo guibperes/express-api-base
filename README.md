@@ -123,8 +123,11 @@ const routes = Router();
 
 routes.get(
   '/:id',
-  // Middleware para verificar se o ObjectId é válido.
-  Validations.validateObjectId,
+  /*
+  Middleware para verificar se o ObjectId é válido. Deve ser especificado em
+  qual propriedade do objeto Response será verificado o valor do ObjectId.
+  */
+  Validations.validateObjectId('params', 'id'), // req.params.id
   // Restante dos middlewares
 );
 
