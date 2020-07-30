@@ -11,6 +11,7 @@ Todas as alterações feita no projeto ao longo de suas versões serão descrita
 ### Adicionado
 
 - Módulo `getValueByObjectPath` por [@guibperes](https://github.com/guibperes)
+- Módulo `Cors` por [@guibperes](https://github.com/guibperes)
 
 ## 1.1.9 - 2020-07-22
 
