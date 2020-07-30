@@ -10,8 +10,6 @@ const validateObjectId = (...idPath: string[]) => async (
   next: NextFunction
 ) => {
   const idParameterValue = getValueByObjectPath(req, ...idPath);
-  // const resolveIdValue =typeof idParameterValue === 'string' ? idParameterValue : undefined;
-
   const isValidObjectId = mongoose.isValidObjectId(idParameterValue);
 
   if (!idParameterValue || !isValidObjectId) {
