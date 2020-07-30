@@ -5,6 +5,7 @@ export {
   loggerMiddleware,
   modelToJSONFilter,
   getValueByObjectPath,
+  Cors,
 } from './libs';
 
 export {

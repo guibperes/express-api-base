@@ -3,3 +3,4 @@ export { HttpStatus } from './httpStatus';
 export { Response } from './response';
 export { modelToJSONFilter } from './modelToJSONFilter';
 export { getValueByObjectPath } from './getValueByObjectPath';
+export { Cors } from './cors';
