@@ -9,6 +9,7 @@ Verifique as alterações versionadas em [CHANGELOG](CHANGELOG.md).
   - [logger](#logger)
   - [loggerMiddleware](#loggerMiddleware)
   - [modelToJSONFilter](#modelToJSONFilter)
+  - [getValueByObjectPath](#getValueByObjectPath)
 - [Módulo Middlewares](#módulo-middlewares)
   - [Validations](#validations)
   - [bodyFilterMiddleware](#bodyFilterMiddleware)
@@ -112,6 +113,28 @@ const schema = new Schema(
 );
 ```
 
+### getValueByObjectPath
+Função para recuperar o valor em um atributo de um objeto, caso o atributo não exista será retornado `undefined`, deve ser passado como primeiro parâmetro em qual objeto deseja recuperar o valor, e deve ser passado N parâmetros que formarão o caminho até o atributo.
+```js
+import { getValueByObjectPath } from '@simple-ti/express-api-base';
+
+const searchObject = {
+  nestedObject: {
+    value: 'Some value',
+  },
+  otherValue: 'Other value',
+};
+
+getValueByObjectPath(searchObject, 'nestedObject', 'value');
+// 'Some value'
+
+getValueByObjectPath(searchObject, 'otherValue');
+// 'Other value'
+
+getValueByObjectPath(searchObject, 'someValue');
+// undefined
+```
+
 ## Módulo Middlewares
 ### Validations
 Módulo para validar os parâmetros e atributos nos controllers. Utilizando a biblioteca Yup e a função de validação de ObjectId do Mongoose.
@@ -123,8 +146,11 @@ const routes = Router();
 
 routes.get(
   '/:id',
-  // Middleware para verificar se o ObjectId é válido.
-  Validations.validateObjectId,
+  /*
+  Middleware para verificar se o ObjectId é válido. Deve ser especificado em
+  qual propriedade do objeto Response será verificado o valor do ObjectId.
+  */
+  Validations.validateObjectId('params', 'id'), // req.params.id
   // Restante dos middlewares
 );
 

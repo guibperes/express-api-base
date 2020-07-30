@@ -1,6 +1,6 @@
 {
   "name": "@simple-ti/express-api-base",
-  "version": "1.1.9",
+  "version": "1.2.0-1",
   "description": "Módulo contendo todas as libs e middlewares para criação de API's REST",
   "author": "Guilherme Beidaki Peres",
   "homepage": "https://github.com/simple-ti/express-api-base#readme",
@@ -14,7 +14,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "CHANGELOG.md"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -24,7 +25,7 @@
     "install-peers": "npm-install-peers",
     "test": "rimraf coverage && jest --coverage",
     "eslint": "eslint \"**/*.ts\"",
-    "full-install": "npm install && npm run install-peers"
+    "full-install": "npm ci && npm run install-peers"
   },
   "dependencies": {
     "@types/express-pino-logger": "^4.0.2",

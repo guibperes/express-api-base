@@ -2,16 +2,17 @@ import * as Yup from 'yup';
 import mongoose from 'mongoose';
 import { Request, Response as ExpressResponse, NextFunction } from 'express';
 
-import { Response, HttpStatus } from '../libs';
+import { Response, HttpStatus, getValueByObjectPath } from '../libs';
 
-const validateObjectId = async (
+const validateObjectId = (...idPath: string[]) => async (
   req: Request,
   res: ExpressResponse,
   next: NextFunction
 ) => {
-  const isValidObjectId = mongoose.isValidObjectId(req.params.id);
+  const idParameterValue = getValueByObjectPath(req, ...idPath);
+  const isValidObjectId = mongoose.isValidObjectId(idParameterValue);
 
-  if (!isValidObjectId) {
+  if (!idParameterValue || !isValidObjectId) {
     return Response.send(
       res,
       Response.buildError('Invalid id parameter', HttpStatus.BAD_REQUEST)
