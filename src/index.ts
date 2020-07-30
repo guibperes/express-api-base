@@ -4,6 +4,7 @@ export {
   logger,
   loggerMiddleware,
   modelToJSONFilter,
+  getValueByObjectPath,
 } from './libs';
 
 export {
