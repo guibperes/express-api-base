@@ -24,7 +24,7 @@
     "install-peers": "npm-install-peers",
     "test": "rimraf coverage && jest --coverage",
     "eslint": "eslint \"**/*.ts\"",
-    "full-install": "npm install && npm run install-peers"
+    "full-install": "npm ci && npm run install-peers"
   },
   "dependencies": {
     "@types/express-pino-logger": "^4.0.2",
