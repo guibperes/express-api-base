@@ -10,6 +10,7 @@ Verifique as alterações versionadas em [CHANGELOG](CHANGELOG.md).
   - [loggerMiddleware](#loggerMiddleware)
   - [modelToJSONFilter](#modelToJSONFilter)
   - [getValueByObjectPath](#getValueByObjectPath)
+  - [Cors](#cors)
 - [Módulo Middlewares](#módulo-middlewares)
   - [Validations](#validations)
   - [bodyFilterMiddleware](#bodyFilterMiddleware)
@@ -133,6 +134,16 @@ getValueByObjectPath(searchObject, 'otherValue');
 
 getValueByObjectPath(searchObject, 'someValue');
 // undefined
+```
+
+### Cors
+Módulo para configuração de [CORS (Cross-Origin Resource Sharing)](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Controle_Acesso_CORS).
+```js
+import express from 'express';
+import { Cors } from '@simple-ti/express-api-base';
+
+const app = express();
+app.use(Cors.config());
 ```
 
 ## Módulo Middlewares
