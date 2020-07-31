@@ -11,6 +11,7 @@ Verifique as alterações versionadas em [CHANGELOG](CHANGELOG.md).
   - [modelToJSONFilter](#modelToJSONFilter)
   - [getValueByObjectPath](#getValueByObjectPath)
   - [Cors](#cors)
+  - [DotEnv](#dotenv)
 - [Módulo Middlewares](#módulo-middlewares)
   - [Validations](#validations)
   - [bodyFilterMiddleware](#bodyFilterMiddleware)
@@ -144,6 +145,31 @@ import { Cors } from '@simple-ti/express-api-base';
 
 const app = express();
 app.use(Cors.config());
+```
+
+### DotEnv
+Módulo para configuração de variáveis de ambiente utilizando a biblioteca [dotenv](https://www.npmjs.com/package/dotenv).
+
+```js
+import { DotEnv } from '@simple-ti/express-api-base';
+
+/*
+Função irá configurar as variáveis de ambiente de acordo com o arquivo .env na
+raíz do projeto, podendo passar também um objeto de configuração de acordo com
+a documentação da biblioteca.
+*/
+DotEnv.config();
+
+export const Env = {
+  /*
+  Função para verificar se a variável existe e caso não exista sempre retornar
+  uma string, mantendo a consistência na tipagem das variáveis.
+  */
+  MONGODB_URL: DotEnv.envToString('MONGODB_URL'),
+  JWT_HASH_KEY: DotEnv.envToString('JWT_HASH_KEY'),
+  JWT_EXPIRATION_TIME: DotEnv.envToString('JWT_EXPIRATION_TIME'),
+};
+
 ```
 
 ## Módulo Middlewares

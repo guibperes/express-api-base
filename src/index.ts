@@ -6,6 +6,7 @@ export {
   modelToJSONFilter,
   getValueByObjectPath,
   Cors,
+  DotEnv,
 } from './libs';
 
 export {

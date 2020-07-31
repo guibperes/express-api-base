@@ -4,3 +4,4 @@ export { Response } from './response';
 export { modelToJSONFilter } from './modelToJSONFilter';
 export { getValueByObjectPath } from './getValueByObjectPath';
 export { Cors } from './cors';
+export { DotEnv } from './dotenv';
