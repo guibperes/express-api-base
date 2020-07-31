@@ -4,6 +4,8 @@ Todas as alterações feita no projeto ao longo de suas versões serão descrita
 
 ## Não publicado
 
+## 1.2.0 - 2020-07-31
+
 ### Modificado
 
 - Middleware `Validations` na função `validateObjectId` por [@guibperes](https://github.com/guibperes). Agora é necessário informar em qual propriedade do objeto `Response` será verificado o valor do `ObjectId`.
