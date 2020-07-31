@@ -32,6 +32,7 @@
     "@types/express-pino-logger": "^4.0.2",
     "@types/pino": "^6.3.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express-pino-logger": "^5.0.0",
     "pino": "^6.3.2"
   },
