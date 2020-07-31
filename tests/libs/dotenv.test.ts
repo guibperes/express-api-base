@@ -29,6 +29,7 @@ describe('Lib DotEnv', () => {
     const envValue = DotEnv.envToString('MY_TEST');
 
     expect(envValue).toBeDefined();
+    expect(typeof envValue).toBe('string');
     expect(envValue).toBe(process.env.MY_TEST);
   });
 
@@ -38,6 +39,6 @@ describe('Lib DotEnv', () => {
     const envValue = DotEnv.envToString('MY_TEST');
 
     expect(envValue).toBeDefined();
-    expect(envValue).toBe(process.env.MY_TEST);
+    expect(typeof envValue).toBe('string');
   });
 });
