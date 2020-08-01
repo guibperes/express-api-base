@@ -7,6 +7,7 @@ export {
   getValueByObjectPath,
   Cors,
   DotEnv,
+  Password,
 } from './libs';
 
 export {

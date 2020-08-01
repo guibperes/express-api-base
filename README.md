@@ -12,6 +12,7 @@ Verifique as alterações versionadas em [CHANGELOG](CHANGELOG.md).
   - [getValueByObjectPath](#getValueByObjectPath)
   - [Cors](#cors)
   - [DotEnv](#dotenv)
+  - [Password](#password)
 - [Módulo Middlewares](#módulo-middlewares)
   - [Validations](#validations)
   - [bodyFilterMiddleware](#bodyFilterMiddleware)
@@ -169,7 +170,29 @@ export const Env = {
   JWT_HASH_KEY: DotEnv.envToString('JWT_HASH_KEY'),
   JWT_EXPIRATION_TIME: DotEnv.envToString('JWT_EXPIRATION_TIME'),
 };
+```
 
+### Password
+Módulo para criptografar e comparar senhas, utilizando a bilblioteca [bcrypt](https://www.npmjs.com/package/bcrypt).
+
+```js
+import { Password } from '@simple-ti/express-api-base';
+
+/*
+Função para criptografar uma senha, deve ser informado no primeiro parâmetro a
+senha, podendo também ser informado no segundo parâmetro um número inteiro para
+aumentar a força da criptografia (o padrão é 10), quanto maior o valor, maior
+será o custo de processamento. A função tem como retorno a senha criptografada.
+*/
+const hash = await Password.hash('some_password');
+
+/*
+Função para comparar se uma senha equivale a uma senha criptografa, deve ser
+informado no primeiro parâmetro a senha descriptografada, e no segundo parâmetro
+a senha criptografada. A função tem como retorno um boolean indicando se a senha
+equivale ou não.
+*/
+const isPasswordValid = await Password.compare('some_password', hash);
 ```
 
 ## Módulo Middlewares
