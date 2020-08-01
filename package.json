@@ -31,11 +31,13 @@
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
     "@types/express-pino-logger": "^4.0.2",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/pino": "^6.3.0",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express-pino-logger": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
     "pino": "^6.3.2"
   },
   "peerDependencies": {
