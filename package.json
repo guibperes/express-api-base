@@ -28,9 +28,11 @@
     "full-install": "npm ci && npm run install-peers"
   },
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
     "@types/express-pino-logger": "^4.0.2",
     "@types/pino": "^6.3.0",
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express-pino-logger": "^5.0.0",
