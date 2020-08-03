@@ -195,6 +195,44 @@ equivale ou não.
 const isPasswordValid = await Password.compare('some_password', hash);
 ```
 
+### JsonWebToken
+Módulo para criptografar e descriptografar [Json Web Token (JWT)](https://jwt.io/introduction), utilizando a biblioteca [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken).
+
+```js
+import { JsonWebToken } from '@simple-ti/express-api-base';
+
+// Interface para definir o tipo do JWT.
+interface TokenData {
+  some: string;
+}
+
+/*
+Função para criptografar um JWT, deve ser informado no primeiro parâmetro um
+objeto com os dados que serão criptografados, no segundo parâmetro deve ser
+informado uma string contendo a chave que será utilizada na criptografia, no
+terceiro parâmetro pode ser informado um objeto com configurações segundo a
+documentação da biblioteca.
+*/
+const tokenHash = await JsonWebToken.sign(
+  { some: 'data' },
+  'secret_hash_key',
+  { expiresIn: Env.JWT_EXPIRATION_TIME }
+);
+
+/*
+Função para verficar e descriptografar um JWT, deve ser informado no primeiro
+uma string contendo o JWT criptografado, no segundo parâmetro deve ser informado
+uma string contendo a chave que será utilizada, na criptografia, no terceiro
+parâmetro pode ser informado um objeto com configurações segundo a documentação
+da biblioteca. Nos parâmetros de tipagem pode ser passado um parâmetro com a
+tipagem que será utilizado no JWT retornado.
+*/
+const decodedToken = await JsonWebToken.verify<TokenData>(
+  tokenHash.toString(),
+  'secret_hash_key'
+);
+```
+
 ## Módulo Middlewares
 ### Validations
 Módulo para validar os parâmetros e atributos nos controllers. Utilizando a biblioteca Yup e a função de validação de ObjectId do Mongoose.
