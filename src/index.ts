@@ -18,4 +18,4 @@ export {
   notFoundMiddleware,
 } from './middlewares';
 
-export { MongoDB } from './base';
+export { MongoDB, HttpServer, HttpServerCreateOptions } from './base';
