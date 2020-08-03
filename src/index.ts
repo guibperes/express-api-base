@@ -8,6 +8,7 @@ export {
   Cors,
   DotEnv,
   Password,
+  JsonWebToken,
 } from './libs';
 
 export {

@@ -6,3 +6,4 @@ export { getValueByObjectPath } from './getValueByObjectPath';
 export { Cors } from './cors';
 export { DotEnv } from './dotenv';
 export { Password } from './password';
+export { JsonWebToken } from './jsonwebtoken';
