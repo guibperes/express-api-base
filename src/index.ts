@@ -17,3 +17,5 @@ export {
   errorMiddleware,
   notFoundMiddleware,
 } from './middlewares';
+
+export { MongoDB } from './base';

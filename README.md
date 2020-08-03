@@ -19,6 +19,8 @@ Verifique as alterações versionadas em [CHANGELOG](CHANGELOG.md).
   - [bodyFilterMiddleware](#bodyFilterMiddleware)
   - [errorMiddleware](#errorMiddleware)
   - [notFoundMiddleware](#notFoundMiddleware)
+- [Módulo Base](#módulo-base)
+  - [MongoDB](#mongodb)
 
 ## Módulo Libs
 ### HttpStatus
@@ -232,6 +234,24 @@ const decodedToken = await JsonWebToken.verify<TokenData>(
   tokenHash.toString(),
   'secret_hash_key'
 );
+```
+
+## Módulo Base
+### MongoDB
+Módulo para gerenciar a conexão com o banco de dados, utilizando a biblioteca mongoose.
+
+```js
+import { MongoDB } from '@simple-ti/express-api-base';
+
+/*
+Função para conectar no banco de dados, deve ser informado no primeiro parâmetro
+uma string contendo a URL de conexão, pode ser informado como segundo parâmetro
+um objeto com algumas configurações, verificar a documentação da biblioteca.
+*/
+await MongoDB.connect('connection_string', { autoReconnect: true });
+
+// Função para fechar todas as conexões e desconectar do banco de dados.
+await MongoDB.disconnect();
 ```
 
 ## Módulo Middlewares
