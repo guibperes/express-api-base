@@ -13,6 +13,7 @@ Verifique as alterações versionadas em [CHANGELOG](CHANGELOG.md).
   - [Cors](#cors)
   - [DotEnv](#dotenv)
   - [Password](#password)
+  - [JsonWebToken](#jsonwebtoken)
 - [Módulo Middlewares](#módulo-middlewares)
   - [Validations](#validations)
   - [bodyFilterMiddleware](#bodyFilterMiddleware)
