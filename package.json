@@ -1,6 +1,6 @@
 {
   "name": "@simple-ti/express-api-base",
-  "version": "1.3.1",
+  "version": "1.4.0-0",
   "description": "Módulo contendo todas as libs e middlewares para criação de API's REST",
   "author": "Guilherme Beidaki Peres",
   "homepage": "https://github.com/simple-ti/express-api-base#readme",
