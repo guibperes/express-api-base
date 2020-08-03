@@ -61,6 +61,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "faker": "^4.1.0",
     "jest": "^26.1.0",
+    "mongodb-memory-server": "^6.6.3",
     "node-mocks-http": "^1.8.1",
     "npm-install-peers": "^1.2.1",
     "prettier": "^2.0.5",
