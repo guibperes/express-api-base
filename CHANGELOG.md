@@ -4,6 +4,16 @@ Todas as alterações feita no projeto ao longo de suas versões serão descrita
 
 ## Não publicado
 
+### Adicionado
+
+- Módulo `MongoDB` por [@guibperes](https://github.com/guibperes)
+
+## 1.3.1 - 2020-08-03
+
+### Modificado
+
+- Corrigido índice do README com link para o módulo `JsonWebToken` por [@guibperes](https://github.com/guibperes)
+
 ## 1.3.0 - 2020-08-03
 
 ### Adicionado
