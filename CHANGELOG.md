@@ -4,6 +4,8 @@ Todas as alterações feita no projeto ao longo de suas versões serão descrita
 
 ## Não publicado
 
+## 1.3.0 - 2020-08-03
+
 ### Adicionado
 
 - Módulo `Password` por [@guibperes](https://github.com/guibperes)
