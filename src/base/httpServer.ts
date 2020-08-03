@@ -22,7 +22,7 @@ interface HttpServerInstances {
   express: Express;
 }
 
-export interface HttpServer {
+export interface HttpServerInstance {
   instances: HttpServerInstances;
   start: () => Promise<void>;
   shutdown: () => Promise<never>;
@@ -38,7 +38,7 @@ const create = ({
   useJsonBody = true,
   useLogger = true,
   useNotFoundMiddleware = true,
-}: HttpServerCreateOptions): HttpServer => {
+}: HttpServerCreateOptions): HttpServerInstance => {
   const app = express();
   const server = http.createServer(app);
 
