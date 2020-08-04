@@ -4,6 +4,8 @@ Todas as alterações feita no projeto ao longo de suas versões serão descrita
 
 ## Não publicado
 
+## 1.5.0 - 2020-08-04
+
 ### Adicionado
 
 - Módulo `HttpServer` por [@guibperes](https://github.com/guibperes)
