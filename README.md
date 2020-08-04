@@ -21,6 +21,7 @@ Verifique as alterações versionadas em [CHANGELOG](CHANGELOG.md).
   - [notFoundMiddleware](#notFoundMiddleware)
 - [Módulo Base](#módulo-base)
   - [MongoDB](#mongodb)
+  - [HttpServer](#httpserver)
 
 ## Módulo Libs
 ### HttpStatus
@@ -236,24 +237,6 @@ const decodedToken = await JsonWebToken.verify<TokenData>(
 );
 ```
 
-## Módulo Base
-### MongoDB
-Módulo para gerenciar a conexão com o banco de dados, utilizando a biblioteca mongoose.
-
-```js
-import { MongoDB } from '@simple-ti/express-api-base';
-
-/*
-Função para conectar no banco de dados, deve ser informado no primeiro parâmetro
-uma string contendo a URL de conexão, pode ser informado como segundo parâmetro
-um objeto com algumas configurações, verificar a documentação da biblioteca.
-*/
-await MongoDB.connect('connection_string', { autoReconnect: true });
-
-// Função para fechar todas as conexões e desconectar do banco de dados.
-await MongoDB.disconnect();
-```
-
 ## Módulo Middlewares
 ### Validations
 Módulo para validar os parâmetros e atributos nos controllers. Utilizando a biblioteca Yup e a função de validação de ObjectId do Mongoose.
@@ -320,4 +303,81 @@ const app = express();
 
 // Deve ser definido depois das rotas.
 app.use('*', notFoundMiddleware);
+```
+
+## Módulo Base
+### MongoDB
+Módulo para gerenciar a conexão com o banco de dados, utilizando a biblioteca mongoose.
+
+```js
+import { MongoDB } from '@simple-ti/express-api-base';
+
+/*
+Função para conectar no banco de dados, deve ser informado no primeiro parâmetro
+uma string contendo a URL de conexão, pode ser informado como segundo parâmetro
+um objeto com algumas configurações, verificar a documentação da biblioteca.
+*/
+await MongoDB.connect('connection_string', { autoReconnect: true });
+
+// Função para fechar todas as conexões e desconectar do banco de dados.
+await MongoDB.disconnect();
+```
+
+### HttpServer
+Módulo para criar uma instância `HTTP.Server` utilizando o server nativo no NodeJS e Express.
+
+```js
+import { Router } from 'express';
+import { HttpServer } from '@simple-ti/express-api-base';
+
+/*
+Função para criar uma instância, retornando um objeto do tipo HttpServerInstance,
+contendo as funções start e shutdown, e o objeto instances, com as instâncias
+construidas do server http nativo e do Express.
+*/
+const server = HttpServer.create({
+  // As rotas que serão definidas na aplicação.
+  applicationRoutes: Router(),
+
+  // Porta TCP que será utilizada para expor o server.
+  port: 5000,
+
+  // (Opcional) Função que será utilizada para compor a inicialização do server.
+  startFunction = async () => {},
+
+  // (Opcional) Função que será utilizada para compor o desligamento do server.
+  shutdownFunction = async () => {},
+
+  // (Opcional)
+  // Parâmetro booleano para verificar se será utilizado o middleware de CORS.
+  // Valor inicial definido como true.
+  useCors: true,
+
+  // (Opcional)
+  // Parâmetro booleano para verificar se será utilizado o middleware de erro padrão.
+  // Valor inicial definido como true.
+  useErrorMiddleware: true,
+
+  // (Opcional)
+  // Parâmetro booleano para verificar se será utilizado o middleware de JSON no body.
+  // Valor inicial definido como true.
+  useJsonBody: true,
+
+  // (Opcional)
+  // Parâmetro booleano para verificar se será utilizado o middleware de logger.
+  // Valor inicial definido como true.
+  useLogger: true,
+
+  // (Opcional)
+  // Parâmetro booleano para verificar se será utilizado o middleware de rotas não encontradas.
+  // Valor inicial definido como true.
+  useNotFoundMiddleware: true,
+});
+
+// Utilização da função shutdown para responder aos sinais de desligamento do Docker.
+process.on('SIGINT', server.shutdown);
+process.on('SIGTERM', server.shutdown);
+
+// Inicializando o servidor de aplicação.
+server.start();
 ```
