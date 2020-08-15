@@ -1,5 +1,5 @@
 import http, { Server } from 'http';
-import express, { Express, Router, RequestHandler } from 'express';
+import express, { Express, Router } from 'express';
 import 'express-async-errors';
 
 import { Cors, logger, loggerMiddleware } from '../libs';
@@ -13,7 +13,8 @@ export interface HttpServerCreateOptions {
   useErrorMiddleware?: boolean;
   applicationRoutes: Router;
   port: number;
-  beforeApplicationRoutesMiddlewares?: RequestHandler[][];
+  beforeApplicationRoutesMiddlewares?: any[][];
+  afterApplicationRoutesMiddlewares?: any[][];
   startFunction?: () => Promise<any>;
   shutdownFunction?: () => Promise<any>;
 }
@@ -40,6 +41,7 @@ const create = ({
   useLogger = true,
   useNotFoundMiddleware = true,
   beforeApplicationRoutesMiddlewares = [],
+  afterApplicationRoutesMiddlewares = [],
 }: HttpServerCreateOptions): HttpServerInstance => {
   const app = express();
   const server = http.createServer(app);
@@ -53,6 +55,10 @@ const create = ({
   );
 
   app.use(applicationRoutes);
+
+  afterApplicationRoutesMiddlewares.forEach(middleware =>
+    app.use(...middleware)
+  );
 
   if (useNotFoundMiddleware) app.use('*', notFoundMiddleware);
   if (useErrorMiddleware) app.use(errorMiddleware);
