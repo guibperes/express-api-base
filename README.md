@@ -372,6 +372,16 @@ const server = HttpServer.create({
   // Parâmetro booleano para verificar se será utilizado o middleware de rotas não encontradas.
   // Valor inicial definido como true.
   useNotFoundMiddleware: true,
+
+  // (Opcional)
+  // Parâmetro array para adicionar middlewares na instância do express antes de
+  // registrar as rotas da aplicação
+  beforeApplicationRoutesMiddlewares: [],
+
+  // (Opcional)
+  // Parâmetro array para adicionar middlewares na instância do express depois de
+  // registrar as rotas da aplicação
+  afterApplicationRoutesMiddlewares: [],
 });
 
 // Utilização da função shutdown para responder aos sinais de desligamento do Docker.

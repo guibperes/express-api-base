@@ -1,5 +1,5 @@
 import { Server } from 'http';
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import request from 'supertest';
 
 import { HttpServer } from '../../src/base/httpServer';
@@ -17,9 +17,6 @@ describe('Lib HttpServer', () => {
 
   test('should HttpServer module be defined', () => {
     expect(HttpServer).toBeDefined();
-  });
-
-  test('should function create be defined', () => {
     expect(HttpServer.create).toBeInstanceOf(Function);
   });
 
@@ -46,6 +43,8 @@ describe('Lib HttpServer', () => {
       useLogger: false,
       useNotFoundMiddleware: false,
       useErrorMiddleware: false,
+      beforeApplicationRoutesMiddlewares: [],
+      afterApplicationRoutesMiddlewares: [],
       startFunction,
       shutdownFunction,
     });
@@ -123,6 +122,38 @@ describe('Lib HttpServer', () => {
     routes.get('/status', (req, res) => res.json({ ok: true }));
 
     const server = HttpServer.create({ port: 0, applicationRoutes: routes });
+    const response = await request(server.instances.http).get('/status');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ ok: true });
+  });
+
+  test('should create, register on before array and execute a http GET on /status route', async () => {
+    const routes = Router();
+    const server = HttpServer.create({
+      port: 0,
+      applicationRoutes: routes,
+      beforeApplicationRoutesMiddlewares: [
+        ['/status', (req: Request, res: Response) => res.json({ ok: true })],
+      ],
+    });
+
+    const response = await request(server.instances.http).get('/status');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ ok: true });
+  });
+
+  test('should create, after on before array and execute a http GET on /status route', async () => {
+    const routes = Router();
+    const server = HttpServer.create({
+      port: 0,
+      applicationRoutes: routes,
+      afterApplicationRoutesMiddlewares: [
+        ['/status', (req: Request, res: Response) => res.json({ ok: true })],
+      ],
+    });
+
     const response = await request(server.instances.http).get('/status');
 
     expect(response.status).toBe(200);
