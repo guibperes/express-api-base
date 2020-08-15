@@ -4,6 +4,8 @@ Todas as alterações feita no projeto ao longo de suas versões serão descrita
 
 ## Não publicado
 
+## 1.6.0 - 2020-08-15
+
 ### Modificado
 
 - Módulo `HttpServer`, alterado para permitir registrar middlewares antes e depois das rotas por [@guibperes](https://github.com/guibperes)
