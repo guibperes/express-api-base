@@ -13,7 +13,7 @@ export interface HttpServerCreateOptions {
   useErrorMiddleware?: boolean;
   applicationRoutes: Router;
   port: number;
-  beforeApplicationRoutesMiddlewares?: RequestHandler[];
+  beforeApplicationRoutesMiddlewares?: RequestHandler[][];
   startFunction?: () => Promise<any>;
   shutdownFunction?: () => Promise<any>;
 }
@@ -47,8 +47,13 @@ const create = ({
   if (useJsonBody) app.use(express.json());
   if (useCors) app.use(Cors.config());
   if (useLogger) app.use(loggerMiddleware);
-  beforeApplicationRoutesMiddlewares.forEach(middleware => app.use(middleware));
+
+  beforeApplicationRoutesMiddlewares.forEach(middleware =>
+    app.use(...middleware)
+  );
+
   app.use(applicationRoutes);
+
   if (useNotFoundMiddleware) app.use('*', notFoundMiddleware);
   if (useErrorMiddleware) app.use(errorMiddleware);
 
