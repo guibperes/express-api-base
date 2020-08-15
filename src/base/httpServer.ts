@@ -1,5 +1,5 @@
 import http, { Server } from 'http';
-import express, { Express, Router } from 'express';
+import express, { Express, Router, RequestHandler } from 'express';
 import 'express-async-errors';
 
 import { Cors, logger, loggerMiddleware } from '../libs';
@@ -13,6 +13,7 @@ export interface HttpServerCreateOptions {
   useErrorMiddleware?: boolean;
   applicationRoutes: Router;
   port: number;
+  beforeApplicationRoutesMiddlewares?: RequestHandler[];
   startFunction?: () => Promise<any>;
   shutdownFunction?: () => Promise<any>;
 }
@@ -38,6 +39,7 @@ const create = ({
   useJsonBody = true,
   useLogger = true,
   useNotFoundMiddleware = true,
+  beforeApplicationRoutesMiddlewares = [],
 }: HttpServerCreateOptions): HttpServerInstance => {
   const app = express();
   const server = http.createServer(app);
@@ -45,6 +47,7 @@ const create = ({
   if (useJsonBody) app.use(express.json());
   if (useCors) app.use(Cors.config());
   if (useLogger) app.use(loggerMiddleware);
+  beforeApplicationRoutesMiddlewares.forEach(middleware => app.use(middleware));
   app.use(applicationRoutes);
   if (useNotFoundMiddleware) app.use('*', notFoundMiddleware);
   if (useErrorMiddleware) app.use(errorMiddleware);
